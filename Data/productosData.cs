@@ -1,7 +1,7 @@
-﻿using storeAPI.conexion;
+﻿using MySql.Data.MySqlClient;
+using storeAPI.conexion;
 using storeAPI.Models;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace storeAPI.Data
 {
@@ -12,9 +12,9 @@ namespace storeAPI.Data
         {
             var lista = new List<Productos>();
 
-            using (var sql = new SqlConnection(conexion.conexionSQL()))
+            using (MySqlConnection sql = new MySqlConnection(conexion.conexionSQL()))
             {
-                using (var cmd = new SqlCommand("insertarProductos", sql))
+                using (var cmd = new MySqlCommand("obtenerProductos", sql))
                 {
                     await sql.OpenAsync();
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -24,9 +24,9 @@ namespace storeAPI.Data
                         while (await item.ReadAsync())
                         {
                             var productos = new Productos();
-                            productos.id = (int)item["id"];
-                            productos.descripcion = (string)item["descripcion"];
-                            productos.precio = (decimal)item["precio"];
+                            productos.id = item.GetInt32("id");
+                            productos.descripcion = item.GetString("description");
+                            productos.precio = item.GetDecimal("precio");
                             lista.Add(productos);
                         }
                     }
