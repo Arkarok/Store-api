@@ -15,8 +15,8 @@ Para correr el proyecto necesitas tener instalado:
 
 ## Backend dependencies:
 
-Intallar la siguiente configuracion de herramientas que proporciona el entorno de desarrollo de Microsoft Visual Studio 2022
+Intallar la siguiente configuracion de herramientas y paquetes que proporciona el entorno de desarrollo de Microsoft Visual Studio 2022
 
-- Desarrollo de ASP.NET y web
-- Desarrollo de escritorio de .NET
+- Herramienta Desarrollo de ASP.NET y web
+- Herramienta Desarrollo de escritorio de .NET
 - paquete NuGet MySQL.Data
