@@ -19,4 +19,4 @@ Intallar la siguiente configuracion de herramientas que proporciona el entorno d
 
 - Desarrollo de ASP.NET y web
 - Desarrollo de escritorio de .NET
-- MySQL.Data
+- paquete NuGet MySQL.Data
