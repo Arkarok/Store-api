@@ -50,5 +50,21 @@ namespace storeAPI.Data
                 }
             }
         }
+
+        public async Task editProductos(Productos parametros)
+        {
+            using (MySqlConnection sql = new MySqlConnection(conexion.conexionSQL()))
+            {
+                using (var cmd = new MySqlCommand("actualizarProductos", sql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("id", parametros.id);
+                    cmd.Parameters.AddWithValue("precio", parametros.precio);
+
+                    await sql.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+        }
     }
 }

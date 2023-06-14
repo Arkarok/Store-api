@@ -6,7 +6,7 @@ namespace storeAPI.Controllers
 {
     [ApiController]
     [Route("api/productos")]
-    public class productosController
+    public class productosController:ControllerBase
     {
         [HttpGet("callProductos")]
         public async Task<ActionResult<List<Productos>>> callProductos()
@@ -22,6 +22,14 @@ namespace storeAPI.Controllers
         {
             var funcion = new productosData();
             await funcion.insertProductos(parametros);
+        }
+
+        [HttpPut("updateProductos")]
+        public async Task<ActionResult> updateProductos([FromBody] Productos parametros)
+        {
+            var funcion = new productosData();
+            await funcion.editProductos(parametros);
+            return NoContent();
         }
     }
 }
