@@ -31,5 +31,13 @@ namespace storeAPI.Controllers
             await funcion.editProductos(parametros);
             return NoContent();
         }
+
+        [HttpDelete("deleteProductos")]
+        public async Task<ActionResult> deleteProductos([FromBody] Productos parametros)
+        {
+            var funcion = new productosData();
+            await funcion.removeProductos(parametros);
+            return NoContent();
+        }
     }
 }

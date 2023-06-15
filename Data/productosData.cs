@@ -66,5 +66,20 @@ namespace storeAPI.Data
                 }
             }
         }
+
+        public async Task removeProductos(Productos parametros)
+        {
+            using (MySqlConnection sql = new MySqlConnection(conexion.conexionSQL()))
+            {
+                using (var cmd = new MySqlCommand("eliminarProductos", sql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("id", parametros.id);
+
+                    await sql.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+        }
     }
 }
