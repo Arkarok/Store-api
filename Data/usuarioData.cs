@@ -8,19 +8,22 @@ namespace storeAPI.Data
     public class usuarioData
     {
         conexionBD conexion = new conexionBD();
-        public async Task autentication(Usuarios parametros)
+        public async Task<bool> autentication(Usuarios parametros)
         {
             using (MySqlConnection sql = new MySqlConnection(conexion.conexionSQL()))
             {
-                using (var cmd = new MySqlCommand("SELECT * FROM usuarios WHERE usuarios.username = " +
-                    "username AND usuarios.password = password;", sql))
+                await sql.OpenAsync();
+
+                using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM usuarios WHERE usuarios.username = " +
+                    "username AND usuarios.contraseña = contraseña;", sql))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    //cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("username", parametros.username);
                     cmd.Parameters.AddWithValue("contraseña", parametros.contraseña);
 
-                    await sql.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    int count = Convert.ToInt32(await cmd.ExecuteNonQueryAsync());
+
+                    return count > 0;
                 }
             }
         }

@@ -1,17 +1,28 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using storeAPI.Data;
 using storeAPI.Models;
 
 namespace storeAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/usuarios")]
     [ApiController]
     public class usuarioController : ControllerBase
     {
-        [HttpPost]
-        public async Task<ActionResult> autenticate([FromBody] Usuarios parametros)
+        [HttpPost("autenticate")]
+        public async Task<ActionResult<bool>> autenticate([FromBody] Usuarios parametros)
         {
-            return Ok("por el momento nada");
+            var funcion = new usuarioData();
+            var autenticacion = await funcion.autentication(parametros);
+
+            if (autenticacion)
+            {
+                return Ok("usuario autenticado exitosamente");
+            }
+            else
+            {
+                return BadRequest("usuario autenticado incorrectamente");
+            }
         }
     }
 }
