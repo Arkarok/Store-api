@@ -15,6 +15,7 @@ namespace storeAPI.Controllers
             var lista = await funcion.showProductos();
 
             return lista;
+
         }
 
         [HttpPost("createProductos")]
