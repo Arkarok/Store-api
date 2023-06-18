@@ -25,7 +25,7 @@ namespace storeAPI.Data
                         {
                             var productos = new Productos();
                             productos.id = item.GetInt32("id");
-                            productos.descripcion = item.GetString("descripcion");
+                            productos.nombre = item.GetString("nombre");
                             productos.precio = item.GetDecimal("precio");
                             lista.Add(productos);
                         }
@@ -42,7 +42,7 @@ namespace storeAPI.Data
                 using (var cmd = new MySqlCommand("insertarProductos", sql))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("descripcion", parametros.descripcion);
+                    cmd.Parameters.AddWithValue("nombre", parametros.nombre);
                     cmd.Parameters.AddWithValue("precio", parametros.precio);
 
                     await sql.OpenAsync();
