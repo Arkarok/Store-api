@@ -6,6 +6,7 @@
         public String? nombre { get; set; }
         public decimal precio { get; set; }
         public int cantidad { get; set; }
+        public String categoria { get; set; }
 
     }
 }

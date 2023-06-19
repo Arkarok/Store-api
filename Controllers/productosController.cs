@@ -40,5 +40,15 @@ namespace storeAPI.Controllers
             await funcion.removeProductos(parametros);
             return NoContent();
         }
+
+        [HttpGet("callCategorias")]
+        public async Task<ActionResult<List<Productos>>> callCategorias([FromBody] Productos parametros)
+        {
+            var funcion = new productosData();
+            var lista = await funcion.showCategoria(parametros);
+
+            return lista;
+
+        }
     }
 }

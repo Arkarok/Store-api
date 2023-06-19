@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using storeAPI.conexion;
 using storeAPI.Models;
+using System.ComponentModel;
 using System.Data;
 
 namespace storeAPI.Data
@@ -28,6 +29,7 @@ namespace storeAPI.Data
                             productos.nombre = item.GetString("nombre");
                             productos.precio = item.GetDecimal("precio");
                             productos.cantidad = item.GetInt32("cantidad");
+                            productos.categoria = item.GetString("categoria");
                             lista.Add(productos);
                         }
                     }
@@ -46,6 +48,7 @@ namespace storeAPI.Data
                     cmd.Parameters.AddWithValue("nombre", parametros.nombre);
                     cmd.Parameters.AddWithValue("precio", parametros.precio);
                     cmd.Parameters.AddWithValue("cantidad", parametros.cantidad);
+                    cmd.Parameters.AddWithValue("categoria", parametros.categoria);
 
                     await sql.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
@@ -82,6 +85,36 @@ namespace storeAPI.Data
                     await sql.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
                 }
+            }
+        }
+
+        public async Task<List<Productos>> showCategoria(Productos parametros)
+        {
+            var lista = new List<Productos>();
+
+            using (MySqlConnection sql = new MySqlConnection(conexion.conexionSQL()))
+            {
+                using (var cmd = new MySqlCommand("obtenerProductosPorCategoria", sql))
+                {
+                    await sql.OpenAsync();
+                    cmd.CommandType= CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("categoria", parametros.categoria);
+
+                    using (var item = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await item.ReadAsync())
+                        {
+                            var productos = new Productos();
+                            productos.id = item.GetInt32("id");
+                            productos.nombre = item.GetString("nombre");
+                            productos.precio = item.GetDecimal("precio");
+                            productos.cantidad = item.GetInt32("cantidad");
+                            productos.categoria = item.GetString("categoria");
+                            lista.Add(productos);
+                        }
+                    }
+                }
+                return lista;
             }
         }
     }
