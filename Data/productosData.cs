@@ -27,6 +27,7 @@ namespace storeAPI.Data
                             productos.id = item.GetInt32("id");
                             productos.nombre = item.GetString("nombre");
                             productos.precio = item.GetDecimal("precio");
+                            productos.cantidad = item.GetInt32("cantidad");
                             lista.Add(productos);
                         }
                     }
@@ -44,6 +45,7 @@ namespace storeAPI.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("nombre", parametros.nombre);
                     cmd.Parameters.AddWithValue("precio", parametros.precio);
+                    cmd.Parameters.AddWithValue("cantidad", parametros.cantidad);
 
                     await sql.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
@@ -60,6 +62,7 @@ namespace storeAPI.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("id", parametros.id);
                     cmd.Parameters.AddWithValue("precio", parametros.precio);
+                    cmd.Parameters.AddWithValue("cantidad", parametros.cantidad);
 
                     await sql.OpenAsync();
                     await cmd.ExecuteNonQueryAsync();
