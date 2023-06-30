@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8UFlp/qXYiEvktmfphvWurg0h8yjZBm4QfLRiLXfIwlUVmm9HlXogAAxsPCbo8zplb7/vdt10W14Is2dCrCOyA==",
+  "dgSpecHash": "fjtgsS6cU5pSOua8jjibXCVXNkEuvFfeWQLs/PfRGzRlTxI9EKjaGIeFo0gZ0Lo3jRBoKnlXj1RRMvIRYpuEZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\compumax\\Desktop\\10 Semestre\\Trabajos desarrollados en C-sharp\\storeAPI\\storeAPI.csproj",
+  "projectFilePath": "C:\\Users\\compumax\\Documents\\GitHub\\Store-api\\storeAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\compumax\\.nuget\\packages\\google.protobuf\\3.21.9\\google.protobuf.3.21.9.nupkg.sha512",
     "C:\\Users\\compumax\\.nuget\\packages\\k4os.compression.lz4\\1.3.5\\k4os.compression.lz4.1.3.5.nupkg.sha512",
